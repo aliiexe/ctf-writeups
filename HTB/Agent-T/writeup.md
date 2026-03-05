@@ -31,7 +31,7 @@ nmap -sC -sV 10.80.175.104
 
 **Finding:** Port 80/tcp (HTTP) was open.
 
-**Screenshot:** screenshots/nmap_scan.png
+![Nmap scan](screenshots/nmap_scan.png)
 
 ---
 
@@ -43,7 +43,7 @@ I visited the web server in the browser:
 
 The page loaded an Admin Dashboard-style site that looked mostly static.
 
-**Screenshot:** screenshots/website_dashboard.png
+![Website dashboard](screenshots/website_dashboard.png)
 
 ---
 
@@ -55,7 +55,7 @@ I attempted directory brute forcing:
 gobuster dir -u http://10.80.175.104 -w /usr/share/wordlists/dirb/common.txt
 ```
 
-**Screenshot:** screenshots/gobuster_error.png
+![Gobuster error](screenshots/gobuster_error.png)
 
 Gobuster returned an error because the server responded with HTTP 200 even for non-existing URLs, with a consistent response length (~42131 bytes / 42.13KB). To handle this, I excluded that length:
 
@@ -65,7 +65,7 @@ gobuster dir -u http://10.80.175.104 -w /usr/share/wordlists/dirb/common.txt --e
 
 This completed without returning useful results.
 
-**Screenshot:** screenshots/gobuster_filtered.png
+![Gobuster filtered](screenshots/gobuster_filtered.png)
 
 ---
 
@@ -81,7 +81,7 @@ This revealed an important header:
 
 - **X-Powered-By:** PHP/8.1.0-dev
 
-**Screenshot:** screenshots/curl_headers.png
+![curl headers](screenshots/curl_headers.png)
 
 ---
 
@@ -105,8 +105,9 @@ whoami
 
 The output showed: **root**
 
-**Screenshot:** screenshots/exploit_shell.png  
-**Screenshot:** screenshots/whoami_root.png
+![Exploit shell](screenshots/exploit_shell.png)
+
+![whoami root](screenshots/whoami_root.png)
 
 ---
 
@@ -121,7 +122,7 @@ ls -la
 
 This showed the web directory contents (e.g., index.php, 404.html, vendor/, css/, js/, etc.).
 
-**Screenshot:** screenshots/web_dir_listing.png
+![Web directory listing](screenshots/web_dir_listing.png)
 
 ---
 
@@ -139,7 +140,7 @@ After locating the flag file, I displayed it with:
 cat /path/to/flag.txt
 ```
 
-**Screenshot:** screenshots/flag.png
+![Flag](screenshots/flag.png)
 
 ---
 
